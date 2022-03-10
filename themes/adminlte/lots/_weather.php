@@ -1,0 +1,23 @@
+
+    <input type="input" value="<?= htmlentities($weather) ?>" id="lots-weather" name="Lots[weather]">
+    <div id="openweathermap-widget-12"></div>
+    <script>
+        window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
+        window.myWidgetParam.push(
+            {
+                id: 12,
+                cityid: '<?= $cityid ?>',
+                appid: '<?= Yii::$app->params['openweather_key'] ?>',
+                units: 'metric',
+                containerid: 'openweathermap-widget-12',
+            }
+        );
+        (function() {
+            var script = document.createElement('script');
+            script.async = true;
+            script.charset = "utf-8";
+            script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(script, s);
+        })();
+    </script>

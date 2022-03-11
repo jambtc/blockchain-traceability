@@ -1,6 +1,6 @@
 {
-  "name": "Bosa Traceability",
-  "short_name": "Bosa",
+  "name": "Blockchain Traceability",
+  "short_name": "BC Traceability",
   "icons": [
     {
       "src": "src/images/icons/app-icon-48x48.png",
@@ -44,7 +44,7 @@
   "orientation": "portrait-primary",
   "background_color": "#fff",
   "theme_color": "#3f51b5",
-  "description": "Traceability web application.",
+  "description": "Blockchain Traceability web application.",
   "dir": "ltr",
   "lang": "it-IT"
 }

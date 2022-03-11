@@ -15,4 +15,10 @@ chmod g+w runtime/
 chgrp www-data web/storage
 chmod g+w web/storage/
 
+echo Versioning...
+git rev-parse HEAD>version.txt
+
+chmod +x update.sh
+chmod +x yii
+
 echo Done!

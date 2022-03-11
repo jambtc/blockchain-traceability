@@ -15,8 +15,4 @@ chmod g+w runtime/
 chgrp www-data web/storage
 chmod g+w web/storage/
 
-echo Versioning...
-git rev-parse HEAD>version.txt
-
-
 echo Done!

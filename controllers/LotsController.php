@@ -169,6 +169,8 @@ class LotsController extends Controller
     {
         $searchModel = new LotsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->sort->defaultOrder = ['date' => SORT_DESC];
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,

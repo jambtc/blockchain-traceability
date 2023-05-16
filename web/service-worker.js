@@ -2,7 +2,7 @@
 importScripts('src/js/idb.js');
 importScripts('src/js/idb-utility.js');
 
-var CACHE_STATIC_NAME = 'traceability-static-001';
+var CACHE_STATIC_NAME = 'traceability-static-002';
 var CACHE_DYNAMIC_NAME = 'traceability-dynamic-001';
 
 var OFFLINE_URL = 'offline.html';

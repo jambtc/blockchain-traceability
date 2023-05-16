@@ -220,10 +220,28 @@ class Erc20 extends Component
         $settings = Settings::poa($this->blockchain_id);
 		$WebApp = new WebApp;
 
-		$poaNode = $WebApp->getPoaNode($this->blockchain_id);
-		if (!$poaNode)
-			throw new HttpException(404,'All Nodes are down...');
+        $counter = 0; // Contatore dei tentativi
+        while ($counter < 10) {
+            // Inserisci qui la condizione da verificare all'interno del ciclo
+            $poaNode = $WebApp->getPoaNode($this->blockchain_id);
 
+            if ($poaNode) {
+                // La condizione è stata soddisfatta
+                break; // Termina il ciclo
+            }
+
+            // Aggiorna il contatore dei tentativi
+            $counter++;
+            sleep(1); // metto in pausa 
+        }
+
+        if ($counter === 10 && !($poaNode)) {
+            // Limite massimo di tentativi raggiunto
+            // Inserisci qui il codice da eseguire se la condizione non viene soddisfatta dopo 10 tentativi
+            throw new HttpException(405, 'All Nodes are down...');
+        } 
+
+		
 		$web3 = new Web3($poaNode);
 		$contract = new Contract($web3->provider, $settings->smart_contract_abi);
 
@@ -242,9 +260,26 @@ class Erc20 extends Component
         $settings = Settings::poa($this->blockchain_id);
 		$WebApp = new WebApp;
 
-		$poaNode = $WebApp->getPoaNode($this->blockchain_id);
-		if (!$poaNode)
-			throw new HttpException(404,'All Nodes are down...');
+        $counter = 0; // Contatore dei tentativi
+        while ($counter < 10) {
+            // Inserisci qui la condizione da verificare all'interno del ciclo
+            $poaNode = $WebApp->getPoaNode($this->blockchain_id);
+
+            if ($poaNode) {
+                // La condizione è stata soddisfatta
+                break; // Termina il ciclo
+            }
+
+            // Aggiorna il contatore dei tentativi
+            $counter++;
+            sleep(1); // metto in pausa 
+        }
+
+        if ($counter === 10 && !($poaNode)) {
+            // Limite massimo di tentativi raggiunto
+            // Inserisci qui il codice da eseguire se la condizione non viene soddisfatta dopo 10 tentativi
+            throw new HttpException(405, 'All Nodes are down...');
+        } 
 
 		$web3 = new Web3($poaNode);
 
@@ -389,12 +424,29 @@ class Erc20 extends Component
         $settings = Settings::poa($this->blockchain_id);
         $WebApp = new WebApp;
 
-        $poaNode = $WebApp->getPoaNode($this->blockchain_id);
-        // echo '<pre>poanode'.print_r($poaNode,true);exit;
+        $counter = 0; // Contatore dei tentativi
+        while ($counter < 10) {
+            // Inserisci qui la condizione da verificare all'interno del ciclo
+            $poaNode = $WebApp->getPoaNode($this->blockchain_id);
 
-        if (!$poaNode)
-            throw new HttpException(404,'All Nodes are down...');
+            if ($poaNode){
+                // La condizione è stata soddisfatta
+                break; // Termina il ciclo
+            }
 
+            // Aggiorna il contatore dei tentativi
+            $counter++;
+            sleep(1); // metto in pausa 
+        }
+
+        if ($counter === 10 && !($poaNode)) {
+            // Limite massimo di tentativi raggiunto
+            // Inserisci qui il codice da eseguire se la condizione non viene soddisfatta dopo 10 tentativi
+            throw new HttpException(405,'All Nodes are down...');
+            
+        } 
+        
+        // echo '<pre>counter: '.print_r($counter.', poanode: '.$poaNode,true);exit;
         $web3 = new Web3($poaNode);
 
         $response = null;

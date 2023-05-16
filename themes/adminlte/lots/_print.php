@@ -21,6 +21,7 @@ $qrCode = (new QrCode($qrCodeMessage))
   <?php echo '<img class="rounded mx-auto d-block" src="' . $qrCode->writeDataUri() . '">'; ?>
 </div>
 
+<p class="text-center"><?= $qrCodeMessage ?></p>
 <div class="row">
     <div class="col-md-12">
         <div class="card">

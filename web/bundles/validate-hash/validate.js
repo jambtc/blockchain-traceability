@@ -8,6 +8,9 @@ validate.addEventListener('click', function (ev) {
         data:{
             id: $('#lot-id').val(),
         },
+        afterSend: function() {
+            $('#validate-container').html('');
+        },
         beforeSend: function() {
             $("#btn-validate-text").html(yiiShowcaseOptions.spinner);
         },

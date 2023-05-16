@@ -91,27 +91,50 @@ class ShowcaseController extends Controller
         $model = $this->findModel($_POST['id']);
 
         $ERC20 = new Yii::$app->Erc20(1);
-        // recupero la ricevuta della transazione tramite txhash
-        $receipt = $ERC20->getReceipt($model->txhash);
-        $blockByHash = $ERC20->getBlockByHash($receipt->blockHash);
-        $transactions = $blockByHash->transactions;
 
-        $input = null;
+        try {
+            // recupero la ricevuta della transazione tramite txhash
+            $receipt = $ERC20->getReceipt($model->txhash);
+            
+        } catch (Exception $e) {
+            echo "<pre>" . print_r($e, true) . "</pre>";
+            exit;
+        }
+
         $validate = 2;
         $response = null;
-        foreach ($transactions as $transaction)
-        {
-            if ($transaction->hash == $model->txhash){
-                $input = $transaction->input;
-                $response = $transaction;
-                break;
+        if (isset($receipt->blockHash)) {
+            try {
+                // recupero la ricevuta della transazione tramite txhash
+                $blockByHash = $ERC20->getBlockByHash($receipt->blockHash);
+            } catch (Exception $e) {
+                echo "<pre>" . print_r($e, true) . "</pre>";
+                exit;
+            }
+    
+            if (isset($blockByHash->transactions)){
+    
+                $transactions = $blockByHash->transactions;
+        
+                $input = null;
+                foreach ($transactions as $transaction)
+                {
+                    if ($transaction->hash == $model->txhash){
+                        $input = $transaction->input;
+                        $response = $transaction;
+                        break;
+                    }
+                }
+                $text = substr($input,2);
+        
+                if ($text === $model->hash){
+                    $validate = 1;
+                }
             }
         }
-        $text = substr($input,2);
 
-        if ($text === $model->hash){
-            $validate = 1;
-        }
+
+        
 
         // echo '<pre>'.print_r($receipt,true);
         // echo '<pre>'.print_r($blockByHash,true);

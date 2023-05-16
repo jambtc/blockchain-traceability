@@ -245,14 +245,20 @@ class LotsController extends Controller
         $ERC20 = new Yii::$app->Erc20(1);
 
         // registro l'hash sulla blockchain
-        // Input string must be hexadecimal string
-        $txhash = $ERC20->putHashOnBlockchain($hash);
-
-        $lotsHash = new LotsHash;
-        $lotsHash->lot_id = $model->id;
-        $lotsHash->hash = $hash;
-        $lotsHash->txhash = $txhash;
-        $lotsHash->save();
+        
+        try {
+            // Input string must be hexadecimal string
+            $txhash = $ERC20->putHashOnBlockchain($hash);
+    
+            $lotsHash = new LotsHash;
+            $lotsHash->lot_id = $model->id;
+            $lotsHash->hash = $hash;
+            $lotsHash->txhash = $txhash;
+            $lotsHash->save();
+        } catch (Exception $e) {
+            echo "<pre>".print_r($e,true)."</pre>";
+            exit;
+        }
 
         return $this->redirect(['view', 'id' => $model->id]);
 

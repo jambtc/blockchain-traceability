@@ -120,7 +120,7 @@ class Erc20 extends Component
         if ($counter === 10 && !($poaNode)) {
             // Limite massimo di tentativi raggiunto
             // Inserisci qui il codice da eseguire se la condizione non viene soddisfatta dopo 10 tentativi
-            throw new HttpException(405, 'All Nodes are down...');
+            throw new HttpException(405, 'sendToken: All Nodes are down...');
         } 
 
         $web3 = new Web3($poaNode);
@@ -165,7 +165,7 @@ class Erc20 extends Component
         if ($counter === 10 && !($poaNode)) {
             // Limite massimo di tentativi raggiunto
             // Inserisci qui il codice da eseguire se la condizione non viene soddisfatta dopo 10 tentativi
-            throw new HttpException(405, 'All Nodes are down...');
+            throw new HttpException(405, 'getNonce: All Nodes are down...');
         } 
 
         $web3 = new Web3($poaNode);
@@ -213,7 +213,7 @@ class Erc20 extends Component
         if ($counter === 10 && !($poaNode)) {
             // Limite massimo di tentativi raggiunto
             // Inserisci qui il codice da eseguire se la condizione non viene soddisfatta dopo 10 tentativi
-            throw new HttpException(405, 'All Nodes are down...');
+            throw new HttpException(405, 'balance: All Nodes are down...');
         } 
 
 		$web3 = new Web3($poaNode);
@@ -267,7 +267,7 @@ class Erc20 extends Component
         if ($counter === 10 && !($poaNode)) {
             // Limite massimo di tentativi raggiunto
             // Inserisci qui il codice da eseguire se la condizione non viene soddisfatta dopo 10 tentativi
-            return $this->json(['error'=>'All Nodes are down...']);
+            return $this->json(['error'=>'getblockinfo: All Nodes are down...']);
             // throw new HttpException(405, 'All Nodes are down...');
         } 
 		
@@ -307,7 +307,7 @@ class Erc20 extends Component
         if ($counter === 10 && !($poaNode)) {
             // Limite massimo di tentativi raggiunto
             // Inserisci qui il codice da eseguire se la condizione non viene soddisfatta dopo 10 tentativi
-            throw new HttpException(405, 'All Nodes are down...');
+            throw new HttpException(405, 'getReceipt: All Nodes are down...');
         } 
 
 		
@@ -347,7 +347,7 @@ class Erc20 extends Component
         if ($counter === 10 && !($poaNode)) {
             // Limite massimo di tentativi raggiunto
             // Inserisci qui il codice da eseguire se la condizione non viene soddisfatta dopo 10 tentativi
-            throw new HttpException(405, 'All Nodes are down...');
+            throw new HttpException(405, 'getBlockByHash: All Nodes are down...');
         } 
 
 		$web3 = new Web3($poaNode);
@@ -443,7 +443,7 @@ class Erc20 extends Component
         if ($counter === 10 && !($poaNode)) {
             // Limite massimo di tentativi raggiunto
             // Inserisci qui il codice da eseguire se la condizione non viene soddisfatta dopo 10 tentativi
-            throw new HttpException(405, 'All Nodes are down...');
+            throw new HttpException(405, 'loadGas: All Nodes are down...');
         } 
 
         $web3 = new Web3($poaNode);
@@ -528,7 +528,7 @@ class Erc20 extends Component
         if ($counter === 10 && !($poaNode)) {
             // Limite massimo di tentativi raggiunto
             // Inserisci qui il codice da eseguire se la condizione non viene soddisfatta dopo 10 tentativi
-            throw new HttpException(405,'All Nodes are down...');
+            throw new HttpException(405,'putHashOnBlockchain: All Nodes are down...');
             
         } 
         

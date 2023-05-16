@@ -13,6 +13,8 @@ use app\models\MPWallets;
 
 use Web3\Web3;
 use Web3\Contract;
+use Web3\Providers\HttpProvider;
+use Web3\RequestManagers\HttpRequestManager;
 use Web3p\EthereumTx\Transaction;
 use Nullix\CryptoJsAes\CryptoJsAes;
 
@@ -530,10 +532,10 @@ class Erc20 extends Component
             // Inserisci qui il codice da eseguire se la condizione non viene soddisfatta dopo 10 tentativi
             throw new HttpException(405,'putHashOnBlockchain: All Nodes are down...');
             
-        } 
-        
+        }
+
         // echo '<pre>counter: '.print_r($counter.', poanode: '.$poaNode,true);exit;
-        $web3 = new Web3($poaNode);
+        $web3 = new Web3(new HttpProvider(new HttpRequestManager($poaNode)), []);
 
         $response = null;
 
